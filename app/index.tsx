@@ -2,6 +2,8 @@ import { Text, View } from "react-native";
 import Login from './Screens/LoginScreen/Login'
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
 import * as SecureStore from "expo-secure-store";
+import { NavigationContainer } from "@react-navigation/native";
+import TabNavigation from '../app/Navigations/TabNavigation'
 
 
 
@@ -36,13 +38,14 @@ export default function Index() {
       >
         {/* Sign in Component */}
         <SignedIn>
-          <Text>You are Signed in</Text>
+          <TabNavigation />
         </SignedIn>
 
         {/* Sign Out Component */}
         <SignedOut>
           <Login />
         </SignedOut>
+
       </View>
     </ClerkProvider>
   );
