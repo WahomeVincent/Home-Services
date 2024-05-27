@@ -4,6 +4,7 @@ import Header from './Header'
 import Colors from '../../utils/Colors'
 import Slider from './Slider'
 import Categories from './Categories'
+import BusinessLists from './BusinessLists'
 
 
 export default function HomeScreen() {
@@ -13,6 +14,7 @@ export default function HomeScreen() {
       <View style={{padding:10}}>
         <Slider />
         <Categories />
+        <BusinessLists />
       </View>
     </View>
   )

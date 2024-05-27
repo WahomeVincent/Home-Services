@@ -34,7 +34,30 @@ const getCategory = async() => {
     return result
 }
 
+const getBusinessList = async() => {
+  const query = gql`
+  query GetBusinessLists {
+    businessLists {
+      id
+      name
+      email
+      images {
+        url
+      }
+      address
+      contactPerson
+      category {
+        name
+      }
+    }
+  }  
+  `
+  const result = await request(MASTER_URL, query)
+  return result
+}
+
 export default {
     getSlider,
-    getCategory
+    getCategory,
+    getBusinessList
 }
