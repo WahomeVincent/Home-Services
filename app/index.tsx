@@ -6,7 +6,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import TabNavigation from '../app/Navigations/TabNavigation'
 
 
-
 export default function Index() {
 
   const tokenCache = {

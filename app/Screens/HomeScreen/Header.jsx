@@ -32,10 +32,9 @@ export default function Header() {
 const styles = StyleSheet.create({
     mainContainer:{
         backgroundColor:Colors.PRIMARY,
-        margin:10,
         padding:10,
         borderRadius:10,
-        height:170,
+        height:145,
         justifyContent:'center'
     },
     topSection:{
