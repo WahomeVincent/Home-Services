@@ -7,6 +7,7 @@ import ProfileScreen from '../Screens/ProfileScreen/ProfileScreen';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Colors from '../utils/Colors';
+import HomeNavigation from './HomeNavigation'
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +19,7 @@ export default function TabNavigation() {
           tabBarActiveTintColor:Colors.PRIMARY,
           tabBarInactiveTintColor:'#737373'
           }}>
-            <Tab.Screen name="Home" component={HomeScreen} 
+            <Tab.Screen name="Home" component={HomeNavigation} 
               options={{
                 tabBarLabel:({color}) => (
                   <Text style={{color:color}}>Home</Text>

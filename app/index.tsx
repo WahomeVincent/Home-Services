@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import { Text, View } from "react-native";
 import Login from './Screens/LoginScreen/Login'
 import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
