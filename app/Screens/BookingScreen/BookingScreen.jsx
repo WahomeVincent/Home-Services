@@ -11,15 +11,18 @@ export default function BookingScreen() {
 
 const {user} = useUser()
 const [bookings, setbookings] = useState()
+const [loading, setLoading] = useState(false)
 
 useEffect(() => {
 getBookings()
 },[user])
 
 const getBookings = () => {
-  GlobalApi.getUserBookings(user.primaryEmailAddress.emailAddress).then( resp => {
-    console.log(resp.bookings);
+    setLoading(true)
+    GlobalApi.getUserBookings(user.primaryEmailAddress.emailAddress).then( resp => {
+    // console.log(resp.bookings);
     setbookings(resp.bookings)
+    setLoading(false)
   })
 }
   return (
@@ -29,6 +32,8 @@ const getBookings = () => {
       <View>
         <FlatList 
           data={bookings}
+          onRefresh={() => getBookings()}
+          refreshing={loading}
           renderItem={({index, item}) => (
             <View style={styles.container}>
                 <Image source={{uri:item.businessList?.images[0].url}} style={{objectFit:'fill', width:130, height:110, borderWidth:1, borderRadius:10, borderColor:Colors.BACKGROUND}}/>
