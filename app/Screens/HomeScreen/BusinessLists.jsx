@@ -1,12 +1,15 @@
-import { View, Text, FlatList, Image, StyleSheet } from 'react-native'
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import GlobalApi from '../../utils/GlobalApi'
 import Heading from '../../Components/Heading'
 import Colors from '../../utils/Colors'
+import { useNavigation } from '@react-navigation/native'
+import BusinessListItemSmall from './BusinessListItemSmall'
 
 
 export default function BusinessLists() {
 
+    const navigation = useNavigation()
     const [businessList, setBusinessList] = useState([])
 
     useEffect(()=> {
@@ -15,10 +18,11 @@ export default function BusinessLists() {
 
     const getBusinessLists = () => {
         GlobalApi.getBusinessList().then(resp => {
-        //   console.log('res', resp.businessLists);
+        // console.log(resp.businessLists);
         setBusinessList(resp.businessLists)
         })
     }
+    
 
   return (
     <View>
@@ -31,12 +35,7 @@ export default function BusinessLists() {
             horizontal={true}
             showsHorizontalScrollIndicator={false}
             renderItem={({item, index}) => (
-                <View style={styles.container}>
-                    <Image source={{uri:item.images[0].url}} style={{width:150, height:100, borderWidth:1, borderRadius:10, borderColor:Colors.BACKGROUND}}/>
-                    <Text style={{fontSize:20, fontWeight:'bold'}}>{item.category.name}</Text>
-                    <Text style={{fontSize:12, color:Colors.GRAY}}>{item.name}</Text>
-                    <Text style={{backgroundColor:Colors.PRIMARY, color:Colors.WHITE, marginTop:5, padding:4, borderRadius:5, width:100}}>{item.contactPerson}</Text>
-                </View>
+                <BusinessListItemSmall business={item}/>
             )}
         />
     </View>
@@ -49,14 +48,5 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between'
-    },
-    container:{
-        flex:1,
-        gap:2,
-        marginTop:10,
-        marginRight:10,
-        backgroundColor:Colors.WHITE,
-        borderRadius:10,
-        padding:10
     }
 })

@@ -10,7 +10,7 @@ export default function BusinessDetailScreen() {
     const param = useRoute().params
     const navigation = useNavigation()
 
-    const [business, setBusiness] = useState(param.business[0])  
+    const [business, setBusiness] = useState(param.business)  
     const [readMore, setReadMore] = useState(false) 
     const [showModal, setShowModal] = useState(false)
 
@@ -18,7 +18,7 @@ export default function BusinessDetailScreen() {
       setReadMore(preve => !preve)
     }
     // useEffect(() => {
-    //   console.log(param.business[0]);
+    //   console.log(param.business)
     // }, [])
      
     
