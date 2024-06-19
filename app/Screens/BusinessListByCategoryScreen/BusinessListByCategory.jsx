@@ -5,7 +5,7 @@ import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
 import GlobalApi from '../../utils/GlobalApi'
 import Colors from '../../utils/Colors'
-import Ionicons from '@expo/vector-icons/Ionicons';
+import BusinessListItem from './BusinessListItem'
 
 export default function BusinessListByCategory({business}) {
   const param = useRoute().params;
@@ -34,8 +34,7 @@ export default function BusinessListByCategory({business}) {
         <Text style={{fontSize:22, fontWeight:'bold'}}>{param.category}</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.push('business-detail', 
-      {business: businessList})}>
+      <TouchableOpacity >
           {loading ? (
             <ActivityIndicator size="large" color={Colors.PRIMARY} style={{marginTop:100}} />
           ) : (
@@ -43,17 +42,7 @@ export default function BusinessListByCategory({business}) {
               <FlatList
                 data={businessList}
                 renderItem={({item, index}) => (
-                  <View style={styles.container}>
-                        <Image source={{uri:item.images[0].url}} style={{objectFit:'fill', width:130, height:110, borderWidth:1, borderRadius:10, borderColor:Colors.BACKGROUND}}/>
-                        <View style={styles.containerText}>
-                          <Text style={{fontSize:16, color:Colors.GRAY}}>{item.name}</Text>
-                          <Text style={{fontSize:22, fontWeight:'bold'}}>{item.category.name}</Text>
-                          <View style={styles.location}>
-                            <Ionicons name="location-outline" size={20} color={Colors.PRIMARY} />
-                            <Text style={{fontSize:16, color:Colors.GRAY}}>{item.address}</Text>
-                          </View>
-                        </View>
-                  </View>
+                  <BusinessListItem business={item}/>
                 )}
               /> : 
               <View style={styles.defaultText}>
@@ -67,25 +56,6 @@ export default function BusinessListByCategory({business}) {
 }
 
 const styles = StyleSheet.create({
-  container:{
-    display:'flex',
-    flexDirection:'row',
-    gap:10,
-    backgroundColor:Colors.WHITE,
-    padding:10,
-    marginHorizontal:15,
-    borderRadius:15
-  },
-  containerText:{
-    display:'flex',
-    gap:5,
-    justifyContent:'space-evenly'
-  },
-  location:{
-    display:'flex',
-    flexDirection:'row',
-    gap:6
-  },
   defaultText:{
     display:'flex',
     justifyContent:'center',
