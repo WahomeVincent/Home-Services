@@ -7,6 +7,7 @@ import Heading from '@/app/Components/Heading';
 import { Collapsible } from '@/components/Collapsible';
 import GlobalApi from '../../utils/GlobalApi'
 import { useUser } from '@clerk/clerk-expo';
+import dateFormat from "dateformat";
 
 
 export default function BookingModal({businessId, hideModal}) {
@@ -17,7 +18,7 @@ export default function BookingModal({businessId, hideModal}) {
   const [noteText, setNoteText] = useState()
   const {user} = useUser()
 
- 
+  const now = dateFormat(selectedDate, "dddd, dS- mmmm");
 
   useEffect(() => {
     getTime()
@@ -56,12 +57,11 @@ export default function BookingModal({businessId, hideModal}) {
       userName: user.fullName,
       userEmail: user.primaryEmailAddress.emailAddress,
       time: selectedTime,
-      date: selectedDate,
+      date: now,
       businessId: businessId
     }
 
     GlobalApi.createBooking(data).then(res => {
-      console.log(res)
       ToastAndroid.show('Booking created Successfully!', ToastAndroid.LONG)
       hideModal()
     })
