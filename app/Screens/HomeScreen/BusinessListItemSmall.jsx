@@ -6,16 +6,14 @@ import { useNavigation } from '@react-navigation/native'
 
 export default function BusinessListItemSmall({business}) {
     const navigation = useNavigation()
-    // useEffect(() => {
-    //     console.log(business.id);
-    // })
+   
 
   return (
     <View>
         <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('business-detail', {business: business})}>
-            <Image source={{uri:business.images[0].url}} style={{width:150, height:100, borderWidth:1, borderRadius:10, borderColor:Colors.BACKGROUND}}/>
-            <Text style={{fontSize:20, fontWeight:'bold'}}>{business.category.name}</Text>
-            <Text style={{fontSize:12, color:Colors.GRAY}}>{business.name}</Text>
+            <Image source={{uri:business.images[0].url}} style={{width:160, height:100, borderWidth:1, borderRadius:10, borderColor:Colors.BACKGROUND}}/>
+            <Text style={{fontSize:20, fontWeight:'bold'}}>{business.name}</Text>
+            <Text style={{fontSize:12, color:Colors.GRAY }}>{business.category.name}</Text>
             <Text style={{backgroundColor:Colors.PRIMARY, color:Colors.WHITE, marginTop:5, padding:4, borderRadius:5, width:100}}>{business.contactPerson}</Text>
         </TouchableOpacity>
     </View>

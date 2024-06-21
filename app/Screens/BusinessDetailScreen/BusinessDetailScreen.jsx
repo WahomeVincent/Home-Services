@@ -10,17 +10,16 @@ export default function BusinessDetailScreen() {
     const param = useRoute().params
     const navigation = useNavigation()
 
-    const [business, setBusiness] = useState(param.business)  
+    const [business, setBusiness] = useState(param?.business)  
     const [readMore, setReadMore] = useState(false) 
     const [showModal, setShowModal] = useState(false)
 
     function toggleReadMore() {
       setReadMore(preve => !preve)
     }
-    // useEffect(() => {
-    //   console.log(param.business)
-    // }, [])
-     
+
+   
+    
     
   return business&&(
     <View>
@@ -35,7 +34,7 @@ export default function BusinessDetailScreen() {
             <View >
               <View style={{display:'flex', flexDirection:'row', alignItems:'center', gap:10}}>
                 <Text style={{fontSize:18, color:Colors.PRIMARY}}>{business.contactPerson}</Text>
-                <Text style={{fontSize:14, backgroundColor:Colors.PRIMARYFADED, color:Colors.PRIMARY, padding:5, borderRadius:5}}>{business.category.name}</Text>
+                {/* <Text style={{fontSize:14, backgroundColor:Colors.PRIMARYFADED, color:Colors.PRIMARY, padding:5, borderRadius:5}}>{business.category.name}</Text> */}
               </View>
               <View style={styles.location}>
                   <Ionicons name="location-outline" size={18} color={Colors.PRIMARY} />
