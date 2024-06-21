@@ -1,4 +1,4 @@
-import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, StyleSheet, Image, TouchableOpacity, ActivityIndicator } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import GlobalApi from '../../utils/GlobalApi'
 import { useUser } from '@clerk/clerk-expo'
@@ -31,8 +31,12 @@ const getBookings = () => {
 }
   return (
     <View>
-      <Text style={{fontSize:22, fontWeight:'bold'}}>My Bookings</Text>
-
+      <Text style={{fontSize:22, fontWeight:'bold', padding:20}}>My Bookings</Text>
+      {loading ? 
+        <ActivityIndicator size="large" color={Colors.PRIMARY} style={{marginTop:100}}/>
+        :
+      <>
+      {bookings ?
       <View>
         <FlatList 
           data={bookings}
@@ -40,42 +44,38 @@ const getBookings = () => {
           refreshing={loading}
           renderItem={({index, item}) => (
             <BusinessListItem 
-              business={item?.businessList}
+              business={item.businessList}
               booking={item}
             />
           )}
         />
       </View>
+      :
+      <View style={styles.defaultText}>
+        <Text style={{fontSize:25, fontWeight:'bold', color:Colors.PRIMARY}}>Sorry,</Text>
+        <Text style={{fontSize:15, color:Colors.GRAY}}> No Bookings At the moment.</Text>
+
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <View>
+            <Text style={{backgroundColor:Colors.PRIMARY, padding:10, borderRadius:10, color:Colors.WHITE}}>
+              Go to business categories
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      }
+      </>
+      }
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container:{
-    display:'flex',
-    flexDirection:'row',
-    gap:10,
-    backgroundColor:Colors.WHITE,
-    padding:10,
-    borderRadius:15,
-    marginVertical:10
-  },
-  containerText:{
-    display:'flex',
-    gap:5,
-    justifyContent:'space-evenly'
-  },
-  location:{
-    display:'flex',
-    flexDirection:'row',
-    gap:6,
-    alignItems:'center'
-  },
   defaultText:{
     display:'flex',
     justifyContent:'center',
     alignItems:'center',
-    gap:10,
+    gap:20,
     marginTop:100
   }
 })
