@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Modal } from 'react-native'
+import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, Modal, Linking } from 'react-native'
 import React, {useEffect, useState } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5'
@@ -18,7 +18,9 @@ export default function BusinessDetailScreen() {
       setReadMore(preve => !preve)
     }
 
-   
+   const messageBtn = () => {
+    Linking.openURL('mailto:'+business.email+"?")
+   }
     
     
   return business&&(
@@ -59,7 +61,7 @@ export default function BusinessDetailScreen() {
       </ScrollView>
 
             <View style={styles.btnContainer}>
-              <TouchableOpacity style={styles.messageBtn}>
+              <TouchableOpacity style={styles.messageBtn} onPress={() => messageBtn()}>
                 <Text style={{textAlign:'center', fontSize:20, color:Colors.WHITE}}>Message</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.bookingBtn} onPress={() => setShowModal(true)}>
