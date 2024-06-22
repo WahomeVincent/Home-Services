@@ -29,17 +29,20 @@ export default function ProfileScreen() {
           <Ionicons name="home" size={34} color={Colors.PRIMARY} />
           <Text style={{fontSize:26, color:Colors.PRIMARY}}>Home</Text>
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.navigationsContent} onPress={() => navigation.navigate('Bookings')} >
           <FontAwesome5 name="bookmark" size={30} color={Colors.PRIMARY} /> 
           <Text style={{fontSize:26, color:Colors.PRIMARY}}>Bookings</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navigationsContent}>
+
+        <TouchableOpacity style={styles.navigationsContent} onPress={() => navigation.navigate('contact-us')}>
           <Ionicons name="mail" size={30} color={Colors.PRIMARY} />
           <Text style={{fontSize:26, color:Colors.PRIMARY}}>/</Text>
           <FontAwesome name="phone" size={30} color={Colors.PRIMARY} />
           <Text style={{fontSize:26, color:Colors.PRIMARY}}>Contact Us</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.navigationsContent}>
+
+        <TouchableOpacity style={styles.navigationsContent} >
           <MaterialCommunityIcons name="logout" size={30} color={Colors.PRIMARY} />
           <Text style={{fontSize:26, color:Colors.PRIMARY}}>Logout</Text>
         </TouchableOpacity>
